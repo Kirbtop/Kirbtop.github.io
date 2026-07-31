@@ -135,6 +135,7 @@
     var date = "";
     var pause = 0;
     var awsd = 0;
+    var estatisticasAtivas = false;
     var qnttentativas = 6;
     var quadrado = 0;
     var numeroquadrado = 2;
@@ -648,10 +649,13 @@ var x = setInterval(function() {
 
 function compartilharMensagem() {
     var mensagemcopiada = "oi"
-    var bestStreak = document.getElementById("Streakdapessoa").innerText;
-    var streakAtual = document.getElementById("Streakatualdapessoa").innerText;
-    var wins = document.getElementById("Vitoriasdapessoa").innerText;
-    var statsTexto = "\nBest Streak: " + bestStreak + "\nStreak: " + streakAtual + "\nWins: " + wins;
+    var statsTexto = ""
+    if (estatisticasAtivas) {
+        var bestStreak = document.getElementById("Streakdapessoa").innerText;
+        var streakAtual = document.getElementById("Streakatualdapessoa").innerText;
+        var wins = document.getElementById("Vitoriasdapessoa").innerText;
+        statsTexto = "\nBest Streak: " + bestStreak + "\nStreak: " + streakAtual + "\nWins: " + wins;
+    }
     if (vitoria == 1) {
         const hoje = new Date(); const dataFormatada = String(hoje.getDate()).padStart(2,'0')+'/'+String(hoje.getMonth()+1).padStart(2,'0')+'/'+hoje.getFullYear(); mensagemcopiada = dataFormatada + statsTexto + "\nI won Today's Pvzdle! Yay!!" + document.getElementById("compartilharmensagem6").innerText + "" + document.getElementById("compartilharmensagem5").innerText + "" + document.getElementById("compartilharmensagem4").innerText + "" + document.getElementById("compartilharmensagem3").innerText + "" + document.getElementById("compartilharmensagem2").innerText + "" + document.getElementById("compartilharmensagem1").innerText +"\nPlay Pvzdle Here:\nhttps://kirbtop.github.io/PvzDle/";
     } else {
@@ -662,6 +666,11 @@ function compartilharMensagem() {
     setTimeout(function () {
         document.getElementById("mensagemcopiadaaviso").classList.remove("animacao")
     }, 5000)
+}
+
+function toggleEstatisticas() {
+    estatisticasAtivas = !estatisticasAtivas;
+    document.getElementById("checkboxestatisticas").src = estatisticasAtivas ? "Image/Button/optionscheckbox1.png" : "Image/Button/optionscheckbox0.png";
 }
 
 function NAOVAIJOGARNAO() {
@@ -817,7 +826,8 @@ function descerquadrado() {
                         <p id="timer" style="margin-top: -30px;"></p>
                     </div>
                     <br><br>
-                    <img id="gugugu" onclick="compartilharMensagem()" src="Image/Button/SHAREBUTOON.png" height="39px" width="166.5px" style="cursor: pointer; margin-left: 25%; margin-right: 75%;">
+                    <img id="gugugu" onclick="compartilharMensagem()" src="Image/Button/SHAREBUTOON.png" height="39px" width="166.5px" style="cursor: pointer; margin-left: 25%;">
+                    <img id="checkboxestatisticas" onclick="toggleEstatisticas()" title="Include Best Streak, Streak and Wins" src="Image/Button/optionscheckbox0.png" height="30px" width="30px" style="cursor: pointer; margin-left: 10px; vertical-align: middle;">
                     <p id="mensagemcopiadaaviso" style="opacity: 0" class="mensagemlalala">Message copied to clipboard!</p>
                 </div>
             </div>
