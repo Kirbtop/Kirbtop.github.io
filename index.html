@@ -660,6 +660,20 @@ function compartilharMensagem() {
     }, 5000)
 }
 
+function compartilharEstatisticas() {
+    var bestStreak = document.getElementById("Streakdapessoa").innerText;
+    var streakAtual = document.getElementById("Streakatualdapessoa").innerText;
+    var wins = document.getElementById("Vitoriasdapessoa").innerText;
+
+    var mensagemStats = "My Pvzdle stats:\nBest Streak: " + bestStreak + "\nStreak: " + streakAtual + "\nWins: " + wins + "\nPlay Pvzdle Here:\nhttps://kirbtop.github.io/PvzDle/";
+
+    navigator.clipboard.writeText(mensagemStats)
+    document.getElementById("mensagemcopiadaaviso2").classList.add("animacao")
+    setTimeout(function () {
+        document.getElementById("mensagemcopiadaaviso2").classList.remove("animacao")
+    }, 5000)
+}
+
 function NAOVAIJOGARNAO() {
     let jajogouhj = getStreak("Planta1");
     if (jajogouhj !== "") {
@@ -813,8 +827,10 @@ function descerquadrado() {
                         <p id="timer" style="margin-top: -30px;"></p>
                     </div>
                     <br><br>
-                    <img id="gugugu" onclick="compartilharMensagem()" src="Image/Button/SHAREBUTOON.png" height="39px" width="166.5px" style="cursor: pointer; margin-left: 25%; margin-right: 75%;">
+                    <img id="gugugu" onclick="compartilharMensagem()" src="Image/Button/SHAREBUTOON.png" height="39px" width="166.5px" style="cursor: pointer; margin-left: 15%;">
+                    <img id="gugugu2" onclick="compartilharEstatisticas()" title="Copy Best Streak, Streak and Wins" src="Image/Button/SHAREBUTOON.png" height="39px" width="166.5px" style="cursor: pointer; margin-left: 10px; filter: hue-rotate(90deg);">
                     <p id="mensagemcopiadaaviso" style="opacity: 0" class="mensagemlalala">Message copied to clipboard!</p>
+                    <p id="mensagemcopiadaaviso2" style="opacity: 0" class="mensagemlalala">Stats copied to clipboard!</p>
                 </div>
             </div>
         </BODY>
